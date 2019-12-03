@@ -1,0 +1,11 @@
+body {
+    font-family: 'Poppins', sans-serif;
+    background-image: url("travel-startup.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+#weather-box {
+    background: white;
+    float: right;
+}
