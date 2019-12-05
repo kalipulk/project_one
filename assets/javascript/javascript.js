@@ -3,7 +3,8 @@ $(document).ready(function() {
     var userInput;
     // ticketMaster();
     // yelp();
-    $(document).on("click", "#searchbutton", yelp);
+    weather();
+    // $(document).on("click", "#searchbutton", yelp);
 
     function ticketMaster() {
 
@@ -14,7 +15,7 @@ $(document).ready(function() {
         }).then(function(response) {
             for (var i = 0; i < 5; i++) {
                 // console.log(response);
-                console.log(response._embedded);
+                // console.log(response._embedded);
                 // console.log(response._embedded.events[i].name);
             }
         })
@@ -48,7 +49,7 @@ $(document).ready(function() {
                     yelpDiv.append(name, address, rating, phone, url);
                     $("#eat").append(yelpDiv);
 
-                    console.log(data.businesses[i].name);
+                    // console.log(data.businesses[i].name);
 
                 }
             }
@@ -56,7 +57,26 @@ $(document).ready(function() {
     }
 
     function weather() {
+        var weatherUrl = "http://api.openweathermap.org/data/2.5/weather?q=new+haven&apikey=edc0682fcbc51e20382a66a7e7c78d0e";
+        $.ajax({
+            url: weatherUrl,
+            method: "GET"
+        }).then(function(response) {
 
+            var currentTemp = $("<p>");
+            var weather = $("<p>");
+            var windSpeed = $("<p>");
+            var weatherDiv = $("<div>");
+            currentTemp.text("Current Tempture " + response.main.temp);
+            weather.text("Current Weather " + response.weather[0].main);
+            windSpeed.text("Wind Chill " + response.wind.deg);
+            weatherDiv.append(currentTemp, weather, windSpeed);
+            console.log(weatherDiv);
+            $("#weather-box").append(weatherDiv);
+
+
+
+        })
     }
 
 })
