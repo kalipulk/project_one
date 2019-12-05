@@ -38,9 +38,7 @@ $(document).ready(function() {
                     var phone = $("<p>");
                     var rating = $("<p>");
                     var url = $("<p>");
-
                     var yelpDiv = $("<div>");
-
                     name.text(data.businesses[i].name);
                     address.text(data.businesses[i].location.display_address[0]);
                     phone.text(data.businesses[i].phone);
@@ -48,9 +46,7 @@ $(document).ready(function() {
                     url.text(data.businesses[i].url);
                     yelpDiv.append(name, address, rating, phone, url);
                     $("#eat").append(yelpDiv);
-
                     // console.log(data.businesses[i].name);
-
                 }
             }
         });
@@ -62,20 +58,23 @@ $(document).ready(function() {
             url: weatherUrl,
             method: "GET"
         }).then(function(response) {
-
+            console.log(response.main.temp);
+            var name = $("<p>");
             var currentTemp = $("<p>");
             var weather = $("<p>");
-            var windSpeed = $("<p>");
+            var coldestWeather = $("<p>");
             var weatherDiv = $("<div>");
-            currentTemp.text("Current Tempture " + response.main.temp);
-            weather.text("Current Weather " + response.weather[0].main);
-            windSpeed.text("Wind Chill " + response.wind.deg);
-            weatherDiv.append(currentTemp, weather, windSpeed);
-            console.log(weatherDiv);
+            var celsius = response.main.temp - 273;
+            var celsiusColdest = response.main.temp_min - 273;
+            var fahrenheit = Math.floor(celsius * (9 / 5) + 32);
+            var fahrenheitColdest = Math.floor(celsiusColdest * (9 / 5) + 32);
+            name.text(response.name);
+            currentTemp.text("Current Tempture: " + fahrenheit);
+            coldestWeather.text("Lowest Tempture: " + fahrenheitColdest);
+            weather.text("Current Weather: " + response.weather[0].main);
+            console.log(response);
+            weatherDiv.append(name, currentTemp, coldestWeather, weather);
             $("#weather-box").append(weatherDiv);
-
-
-
         })
     }
 
