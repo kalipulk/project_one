@@ -2,7 +2,8 @@ $(document).ready(function() {
 
     var userInput;
     // ticketMaster();
-    yelp();
+    // yelp();
+    $(document).on("click", "#searchbutton", yelp);
 
     function ticketMaster() {
 
@@ -47,7 +48,7 @@ $(document).ready(function() {
                     yelpDiv.append(name, address, rating, phone, url);
                     $("#eat").append(yelpDiv);
 
-                    console.log(name);
+                    console.log(data.businesses[i].name);
 
                 }
             }
