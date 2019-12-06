@@ -2,6 +2,7 @@ $(document).ready(function() {
 
     $(document).on("click", "#searchbutton", callThemAll);
 
+
     function callThemAll() {
         event.preventDefault();
         $("#weather-box").empty();
@@ -9,6 +10,7 @@ $(document).ready(function() {
         ticketMaster();
         yelp();
         weather();
+
     }
 
     function ticketMaster() {
@@ -21,7 +23,7 @@ $(document).ready(function() {
             method: "GET"
         }).then(function(response) {
             for (var i = 0; i < 5; i++) {
-                console.log(response);
+                // console.log(response);
                 // console.log(response._embedded);
                 // console.log(response._embedded.events[i].name);
             }
@@ -68,29 +70,27 @@ $(document).ready(function() {
         var location = userInput.replace(/\s+/g, "+");
         console.log(location);
 
-        var weatherUrl = "http://api.weatherapi.com/v1/current.json?key=98319b038859482288d193548190612&q=new+york+city"
-        ";
+        var weatherUrl = "http://api.weatherapi.com/v1/current.json?key=98319b038859482288d193548190612&q=" + location;
         $.ajax({
             url: weatherUrl,
             method: "GET"
         }).then(function(response) {
-            console.log(response.main.temp);
+            console.log(response);
             var name = $("<p>");
             var currentTemp = $("<p>");
             var weather = $("<p>");
-            var coldestWeather = $("<p>");
+            var feelsLike = $("<p>");
+            var windSpeed = $("<p>");
+            var humidity = $("<p>");
             var weatherDiv = $("<div>");
-            console.log(response);
-            // var celsius = response.main.temp - 273;
-            // var celsiusColdest = response.main.temp_min - 273;
-            // var fahrenheit = Math.floor(celsius * (9 / 5) + 32);
-            // var fahrenheitColdest = Math.floor(celsiusColdest * (9 / 5) + 32);
-            // name.text(response.name);
-            // currentTemp.text("Current Tempture: " + fahrenheit + "F");
-            // coldestWeather.text("Lowest Tempture: " + fahrenheitColdest + "F");
-            // weather.text("Current Weather: " + response.weather[0].main);
+            humidity.text("Humidity: " + response.current.humidity + "%");
+            windSpeed.text("Wind Speed: " + response.current.gust_mph + " mph");
+            name.text(response.location.name);
+            currentTemp.text("Current Tempture: " + response.current.temp_f + " F");
+            feelsLike.text("Feel Like: " + response.current.feelslike_f + " F");
+            weather.text("Current Weather: " + response.current.condition.text);
 
-            weatherDiv.append(name, currentTemp, coldestWeather, weather);
+            weatherDiv.append(name, weather, currentTemp, feelsLike, windSpeed, humidity);
             $("#weather-box").append(weatherDiv);
         })
     }
