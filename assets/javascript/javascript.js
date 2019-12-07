@@ -23,17 +23,17 @@ $(document).ready(function() {
         var location = userInput.replace(/\s+/g, "+");
 
 
-        var Ticketurl = "https://app.ticketmaster.com/discovery/v2/events.json?city=" + location + "&apikey=YwWmFsE5b1pkRuBdLaOHng4zYQMQjWuZ";
+        // var Ticketurl = "https://app.ticketmaster.com/discovery/v2/events.json?city=" + location + "&apikey=YwWmFsE5b1pkRuBdLaOHng4zYQMQjWuZ";
 
-        var Ticketurl = "https://app.ticketmaster.com/discovery/v2/events.json?city=new+haven&radius=25&unit=miles&apikey=YwWmFsE5b1pkRuBdLaOHng4zYQMQjWuZ";
+        var Ticketurl = "https://app.ticketmaster.com/discovery/v2/events.json?city=" + location + "&radius=25&unit=miles&apikey=YwWmFsE5b1pkRuBdLaOHng4zYQMQjWuZ";
 
         $.ajax({
             url: Ticketurl,
             method: "GET"
-        }).then(function(response) {
-            for (var i = 0; i < 25; i++) {
+        }).then(function (response) {
+            for (var i = 0; i < 5; i++) {
                 // console.log(response);
-
+                console.log(i);
                 console.log(response._embedded.events[i]);
                 console.log(response._embedded.events[i]._embedded.venues[0].address.line1);
                 console.log(response._embedded.events[i]._embedded.venues[0].name);
@@ -47,16 +47,30 @@ $(document).ready(function() {
                 var date = $("<p>");
                 var time = $("<p>");
                 var location = $("<p>");
+                var price = $("<p>");
+                var url = $("<a>");
+
 
                 name.text(response._embedded.events[i].name);
                 info.text(response._embedded.events[i].info);
                 date.text(response._embedded.events[i].dates.start.localDate);
                 time.text(response._embedded.events[i].dates.start.localTime);
                 location.html(response._embedded.events[i]._embedded.venues[0].name + "<br>" + response._embedded.events[i]._embedded.venues[0].address.line1);
-                // address.html
+                url.attr("href",response._embedded.events[i]._embedded.url);
+                url.text("Buy Tickets Here");
+                console.log(url);
+
+                // price.html ("minimum price:$" + response._embedded.events[i].priceRanges[0].min + "<br>" + "maximum price:$" + response._embedded.events[i].priceRanges[0].max);
+
+                if (response._embedded.events[i].priceRanges[0]) {
+                    price.html("minimum price:$" + response._embedded.events[i].priceRanges[0].min + "<br>" + "maximum price:$" + response._embedded.events[i].priceRanges[0].max);
+                    console.log("test");
+                } else {
+
+                    price.remove();
+                }
 
 
-                console.log(location);
 
 
 
@@ -109,7 +123,7 @@ $(document).ready(function() {
         $.ajax({
             url: weatherUrl,
             method: "GET"
-        }).then(function(response) {
+        }).then(function (response) {
             console.log(response);
             var name = $("<p>");
             var currentTemp = $("<p>");
