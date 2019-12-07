@@ -1,7 +1,7 @@
-$(document).ready(function () {
+$(document).ready(function() {
 
 
-    $(document).on("click", "#searchbutton", callThemAll);
+    $("#userForm").on("submit", callThemAll);
 
 
     function callThemAll() {
@@ -14,14 +14,8 @@ $(document).ready(function () {
 
     }
 
-  
-    var userInput;
-    ticketMaster();
-    // yelp();
 
-    weather();
 
-    // $(document).on("click", "#searchbutton", yelp);
 
 
     function ticketMaster() {
@@ -36,7 +30,7 @@ $(document).ready(function () {
         $.ajax({
             url: Ticketurl,
             method: "GET"
-        }).then(function (response) {
+        }).then(function(response) {
             for (var i = 0; i < 25; i++) {
                 // console.log(response);
 
@@ -61,7 +55,7 @@ $(document).ready(function () {
                 location.html(response._embedded.events[i]._embedded.venues[0].name + "<br>" + response._embedded.events[i]._embedded.venues[0].address.line1);
                 // address.html
 
-                
+
                 console.log(location);
 
 
@@ -74,7 +68,7 @@ $(document).ready(function () {
         var userInput = $("#userInput").val().trim();
         var location = userInput.replace(/\s+/g, "+");
 
-        var yelpUrl = "https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/businesses/search?location=" + userInput;
+        var yelpUrl = "https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/businesses/search?location=" + location;
         $.ajax({
             url: yelpUrl,
             headers: {
@@ -82,7 +76,7 @@ $(document).ready(function () {
             },
             method: 'GET',
             dataType: 'json',
-            success: function (data) {
+            success: function(data) {
                 for (var i = 0; i < 5; i++) {
                     var yelpDiv = $("<div>");
                     var name = $("<p>");
