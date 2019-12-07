@@ -18,7 +18,32 @@
 
 <body>
 
-  
+    <!-- search input field -->
+    <div class="nav-wrapper">
+        <form>
+            <div class="input-field">
+                <input id="search" type="search" placeholder="town/city" required>
+                <label class="label-icon" for="search"><i class="material-icons"></i></label>
+            </div>
+            <div>
+                <form action="#">
+                    <p>
+                        <label>
+                            <input type="checkbox" value="eat" />
+                            <span>Eats</span>
+                        </label>
+                    </p>
+                    <p>
+                        <label>
+                            <input type="checkbox" checked="checked" value="event" />
+                            <span>Events</span>
+                        </label>
+                    </p>
+                </form>
+                <button id="search-button">search</button>
+            </div>
+        </form>
+    </div>
 
     <!-- content cards -->
     <div class="container">
@@ -26,7 +51,7 @@
             <div class="large">
                 <div class="card">
                     <div class="card-image">
-                        <!-- <img src="" id="card-image"> -->
+                        <img src="" id="card-image">
                         <span class="card-title">New Haven Card</span>
                         <a class="btn-floating halfway-fab waves-effect waves-light red"><i
                                 class="material-icons">+</i></a>
