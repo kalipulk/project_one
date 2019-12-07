@@ -5,53 +5,131 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
     <link href="https://fonts.googleapis.com/css?family=Poppins&display=swap" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="assets/css/style.css">
-    <script src="https://code.jquery.com/jquery-3.4.1.js" integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>
-    <script src="assets/javascript/javascript.js">
-    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.js"
+        integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>
+    <script src="https://kit.fontawesome.com/fdea03d6f7.js" crossorigin="anonymous"></script>
+    <script src="assets/javascript/javascript.js"></script>
     <title>For One Night Only</title>
 </head>
 
 <body>
-    <!-- navigation bar -->
-    <!-- float/flex -->
-    <div>
-        <div>about</div>
-        <div>culture</div>
-        <div id="eat">food</div>
-        <div>music</div>
-        <div>weather</div>
-        <div>login</div>
-
-        <!-- search input field -->
-        <form>
-            <input type="search" placeholder="Search" aria-label="Search" id="userInput">
-        </form>
-        <button type="search">
-            <div id="searchbutton">search</div>
-        </button>
+    <!-- jumbotron -->
+    <div class="wrapper">
+        <div class="brand">
+            <i class="fas fa-cloud-moon"></i> For One Night Only
+        </div>
+        <div class="tag">find the best of what's around</div>
     </div>
 
-    <!-- jumbotron -->
-    <div class="jumbotron">
-        <div class="container">
-            <h1>For One Night Only</h1>
-            <div>find the best of what's around</div>
+    <!-- search input field -->
+    <div class="nav-wrapper">
+        <form>
+
+            <div class="input-field">
+                <input id="search" type="search" placeholder="town/city" required>
+                <label class="label-icon" for="search"><i class="material-icons"></i></label>
+            </div>
+            <div>
+                <form action="#">
+                    <p>
+                        <label>
+                            <input type="checkbox" value="eat" />
+                            <span>Eats</span>
+                        </label>
+                    </p>
+                    <p>
+                        <label>
+                            <input type="checkbox" checked="checked" value="event" />
+                            <span>Events</span>
+                        </label>
+                    </p>
+                </form>
+                <button>search</button>
+            </div>
+=======
+            <input type="search" placeholder="Search" aria-label="Search" id="userInput">
+
+        </form>
+    </div>
+
+    <!-- content cards -->
+    <div class="container">
+        <div class="row">
+            <div class="large">
+                <div class="card">
+                    <div class="card-image">
+                        <!-- <img src="" id="card-image"> -->
+                        <span class="card-title">New Haven Card</span>
+                        <a class="btn-floating halfway-fab waves-effect waves-light red"><i
+                                class="material-icons">+</i></a>
+                    </div>
+                    <div class="card-content">
+                        <p>New Haven restaurant card info</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="large">
+            <div class="card">
+                <div class="card-image">
+                    <img src="" id="card-image">
+                    <span class="card-title">New Haven Card</span>
+                    <a class="btn-floating halfway-fab waves-effect waves-light red"><i class="material-icons">+</i></a>
+                </div>
+                <div class="card-content">
+                    <p>New Haven restaurant card info</p>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="row">
+            <div class="large">
+                <div class="card">
+                    <div class="card-image">
+                        <img src="" id="card-image">
+                        <span class="card-title">New Haven Card</span>
+                        <a class="btn-floating halfway-fab waves-effect waves-light red"><i
+                                class="material-icons">+</i></a>
+                    </div>
+                    <div class="card-content">
+                        <p>New Haven restaurant card info</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="large">
+                <div class="card">
+                    <div class="card-image">
+                        <img src="" id="card-image">
+                        <span class="card-title">New Haven Card</span>
+                        <a class="btn-floating halfway-fab waves-effect waves-light red"><i
+                                class="material-icons">+</i></a>
+                    </div>
+                    <div class="card-content">
+                        <p>New Haven restaurant card info</p>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 
-    <!-- homepage content -->
-    <div>
-        <div>event 1</div>
-        <div>event 2</div>
-        <div>event 3</div>
-        <div>event 4</div>
-    </div>
+
     <!-- local weather content -->
+
+    <!-- <div id="weather-box">
+        <div>new haven, ct</div>
+        <div>test</div>
+    </div> -->
+
     <div id="weather-box">
 
     </div>
+
 
 </body>
 
