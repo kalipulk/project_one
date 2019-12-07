@@ -17,31 +17,6 @@
 </head>
 
 <body>
-    <!-- navigation bar -->
-    <!-- float/flex -->
-    <nav>
-        <div class="nav-wrapper">
-            <a href="#" class="brand-logo"></a>
-            <ul id="nav-mobile" class="right hide-on-med-and-down">
-                <li><a href="#">about</a></li>
-                <li><a href="#">culture</a></li>
-                <li><a href="#">food</a></li>
-                <li><a href="#">music</a></li>
-                <li><a href="#">weather</a></li>
-                <li><a href="#">login</a></li>
-            </ul>
-            <!-- search input field -->
-            <form>
-                <div class="input-field">
-                    <input id="search" type="search" required>
-                    <label class="label-icon" for="search"><i class="material-icons">search</i></label>
-                    <i class="material-icons">close</i>
-                </div>
-            </form>
-        </div>
-    </nav>
-
-
     <!-- jumbotron -->
     <div class="wrapper">
         <div class="brand">
@@ -50,39 +25,54 @@
         <div class="tag">find the best of what's around</div>
     </div>
 
-    <!-- content cards -->
-    <div class="row">
-        <div class="col s12 m6">
-            <div class="card" id="eat">
-                <div class="card-image">
-                    <img src="">
-                    <span class="card-title">New Haven Card</span>
-                    <a class="btn-floating halfway-fab waves-effect waves-light red"><i class="material-icons">+</i></a>
-                </div>
-                <div class="card-content">
-                    <p>New Haven restaurant card info</p>
-                </div>
+    <!-- search input field -->
+    <div class="nav-wrapper">
+        <form>
+            <div class="input-field">
+                <input id="search" type="search" placeholder="town/city" required>
+                <label class="label-icon" for="search"><i class="material-icons"></i></label>
             </div>
-        </div>
-
-        <div class="col s12 m6">
-            <div class="card">
-                <div class="card-image">
-                    <img src="">
-                    <span class="card-title">New Haven Card</span>
-                    <a class="btn-floating halfway-fab waves-effect waves-light red"><i class="material-icons">+</i></a>
-                </div>
-                <div class="card-content">
-                    <p>New Haven restaurant card info</p>
-                </div>
+            <div>
+                <form action="#">
+                    <p>
+                        <label>
+                            <input type="checkbox" value="eat" />
+                            <span>Eats</span>
+                        </label>
+                    </p>
+                    <p>
+                        <label>
+                            <input type="checkbox" checked="checked" value="event" />
+                            <span>Events</span>
+                        </label>
+                    </p>
+                </form>
+                <button>search</button>
             </div>
-        </div>
+        </form>
     </div>
-    <div class="row">
-        <div class="col s12 m6">
+
+    <!-- content cards -->
+    <div class="container">
+        <div class="row">
+            <div class="large">
+                <div class="card">
+                    <div class="card-image">
+                        <!-- <img src="" id="card-image"> -->
+                        <span class="card-title">New Haven Card</span>
+                        <a class="btn-floating halfway-fab waves-effect waves-light red"><i
+                                class="material-icons">+</i></a>
+                    </div>
+                    <div class="card-content">
+                        <p>New Haven restaurant card info</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="large">
             <div class="card">
                 <div class="card-image">
-                    <img src="">
+                    <img src="" id="card-image">
                     <span class="card-title">New Haven Card</span>
                     <a class="btn-floating halfway-fab waves-effect waves-light red"><i class="material-icons">+</i></a>
                 </div>
@@ -92,15 +82,33 @@
             </div>
         </div>
 
-        <div class="col s12 m6">
-            <div class="card">
-                <div class="card-image">
-                    <img src="">
-                    <span class="card-title">New Haven Card</span>
-                    <a class="btn-floating halfway-fab waves-effect waves-light red"><i class="material-icons">+</i></a>
+
+        <div class="row">
+            <div class="large">
+                <div class="card">
+                    <div class="card-image">
+                        <img src="" id="card-image">
+                        <span class="card-title">New Haven Card</span>
+                        <a class="btn-floating halfway-fab waves-effect waves-light red"><i
+                                class="material-icons">+</i></a>
+                    </div>
+                    <div class="card-content">
+                        <p>New Haven restaurant card info</p>
+                    </div>
                 </div>
-                <div class="card-content">
-                    <p>New Haven restaurant card info</p>
+            </div>
+
+            <div class="large">
+                <div class="card">
+                    <div class="card-image">
+                        <img src="" id="card-image">
+                        <span class="card-title">New Haven Card</span>
+                        <a class="btn-floating halfway-fab waves-effect waves-light red"><i
+                                class="material-icons">+</i></a>
+                    </div>
+                    <div class="card-content">
+                        <p>New Haven restaurant card info</p>
+                    </div>
                 </div>
             </div>
         </div>
