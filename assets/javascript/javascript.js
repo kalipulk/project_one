@@ -1,5 +1,20 @@
 $(document).ready(function () {
 
+
+    $(document).on("click", "#searchbutton", callThemAll);
+
+
+    function callThemAll() {
+        event.preventDefault();
+        $("#weather-box").empty();
+        $("#eat").empty();
+        ticketMaster();
+        yelp();
+        weather();
+
+    }
+
+  
     var userInput;
     ticketMaster();
     // yelp();
@@ -8,9 +23,16 @@ $(document).ready(function () {
 
     // $(document).on("click", "#searchbutton", yelp);
 
+
     function ticketMaster() {
+        var userInput = $("#userInput").val().trim();
+        var location = userInput.replace(/\s+/g, "+");
+
+
+        var Ticketurl = "https://app.ticketmaster.com/discovery/v2/events.json?city=" + location + "&apikey=YwWmFsE5b1pkRuBdLaOHng4zYQMQjWuZ";
 
         var Ticketurl = "https://app.ticketmaster.com/discovery/v2/events.json?city=new+haven&radius=25&unit=miles&apikey=YwWmFsE5b1pkRuBdLaOHng4zYQMQjWuZ";
+
         $.ajax({
             url: Ticketurl,
             method: "GET"
@@ -49,7 +71,10 @@ $(document).ready(function () {
     }
 
     function yelp() {
-        var yelpUrl = "https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/businesses/search?location=new+haven+06501";
+        var userInput = $("#userInput").val().trim();
+        var location = userInput.replace(/\s+/g, "+");
+
+        var yelpUrl = "https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/businesses/search?location=" + userInput;
         $.ajax({
             url: yelpUrl,
             headers: {
@@ -64,44 +89,49 @@ $(document).ready(function () {
                     var address = $("<p>");
                     var phone = $("<p>");
                     var rating = $("<p>");
-                    var url = $("<p>");
+                    var url = $("<a>");
                     var yelpDiv = $("<div>");
                     name.text(data.businesses[i].name);
                     address.text(data.businesses[i].location.display_address[0]);
                     phone.text(data.businesses[i].phone);
                     rating.text(data.businesses[i].rating);
-                    url.text(data.businesses[i].url);
+                    url.attr("href", data.businesses[i].url);
+                    url.text("Our Yelp Page");
                     yelpDiv.append(name, address, rating, phone, url);
 
                     $("#eat").append(yelpDiv);
-                    // console.log(data.businesses[i].name);
+
                 }
             }
         });
     }
 
     function weather() {
-        var weatherUrl = "http://api.openweathermap.org/data/2.5/weather?q=new+haven&apikey=edc0682fcbc51e20382a66a7e7c78d0e";
+        var userInput = $("#userInput").val().trim();
+        var location = userInput.replace(/\s+/g, "+");
+        console.log(location);
+
+        var weatherUrl = "http://api.weatherapi.com/v1/current.json?key=98319b038859482288d193548190612&q=" + location;
         $.ajax({
             url: weatherUrl,
             method: "GET"
         }).then(function(response) {
-            console.log(response.main.temp);
+            console.log(response);
             var name = $("<p>");
             var currentTemp = $("<p>");
             var weather = $("<p>");
-            var coldestWeather = $("<p>");
+            var feelsLike = $("<p>");
+            var windSpeed = $("<p>");
+            var humidity = $("<p>");
             var weatherDiv = $("<div>");
-            var celsius = response.main.temp - 273;
-            var celsiusColdest = response.main.temp_min - 273;
-            var fahrenheit = Math.floor(celsius * (9 / 5) + 32);
-            var fahrenheitColdest = Math.floor(celsiusColdest * (9 / 5) + 32);
-            name.text(response.name);
-            currentTemp.text("Current Tempture: " + fahrenheit);
-            coldestWeather.text("Lowest Tempture: " + fahrenheitColdest);
-            weather.text("Current Weather: " + response.weather[0].main);
-            console.log(response);
-            weatherDiv.append(name, currentTemp, coldestWeather, weather);
+            humidity.text("Humidity: " + response.current.humidity + "%");
+            windSpeed.text("Wind Speed: " + response.current.gust_mph + " mph");
+            name.text(response.location.name);
+            currentTemp.text("Current Tempture: " + response.current.temp_f + " F");
+            feelsLike.text("Feel Like: " + response.current.feelslike_f + " F");
+            weather.text("Current Weather: " + response.current.condition.text);
+
+            weatherDiv.append(name, weather, currentTemp, feelsLike, windSpeed, humidity);
             $("#weather-box").append(weatherDiv);
         })
     }
