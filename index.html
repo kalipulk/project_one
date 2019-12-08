@@ -9,8 +9,7 @@
     <link href="https://fonts.googleapis.com/css?family=Poppins&display=swap" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="assets/css/style.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-    <script src="https://code.jquery.com/jquery-3.4.1.js"
-        integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.js" integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>
     <script src="https://kit.fontawesome.com/fdea03d6f7.js" crossorigin="anonymous"></script>
     <script src="assets/javascript/javascript.js"></script>
     <title>For One Night Only</title>
@@ -20,13 +19,14 @@
 
     <!-- search input field -->
     <div class="nav-wrapper">
-        <form>
+        <form id="userForm">
             <div class="input-field">
                 <input id="search" type="search" placeholder="town/city" required>
                 <label class="label-icon" for="search"><i class="material-icons"></i></label>
             </div>
             <div>
                 <form action="#">
+
                     <p>
                         <label>
                             <input type="checkbox" value="eat" />
@@ -37,10 +37,12 @@
                         <label>
                             <input type="checkbox" checked="checked" value="event" />
                             <span>Events</span>
+                            
                         </label>
                     </p>
+                    <button id="search-button">search</button>
                 </form>
-                <button id="search-button">search</button>
+
             </div>
         </form>
     </div>

@@ -14,34 +14,18 @@ $(document).ready(function() {
 
     }
 
-
-
-
-
     function ticketMaster() {
-        var userInput = $("#userInput").val().trim();
+        var userInput = $("#search").val().trim();
         var location = userInput.replace(/\s+/g, "+");
-
-
-        // var Ticketurl = "https://app.ticketmaster.com/discovery/v2/events.json?city=" + location + "&apikey=YwWmFsE5b1pkRuBdLaOHng4zYQMQjWuZ";
 
         var Ticketurl = "https://app.ticketmaster.com/discovery/v2/events.json?city=" + location + "&radius=25&unit=miles&apikey=YwWmFsE5b1pkRuBdLaOHng4zYQMQjWuZ";
 
         $.ajax({
             url: Ticketurl,
             method: "GET"
-        }).then(function (response) {
+        }).then(function(response) {
             for (var i = 0; i < 5; i++) {
-                // console.log(response);
-                console.log(i);
-                console.log(response._embedded.events[i]);
-                console.log(response._embedded.events[i]._embedded.venues[0].address.line1);
-                console.log(response._embedded.events[i]._embedded.venues[0].name);
 
-
-                // console.log(response._embedded);
-
-                // console.log(response._embedded.events[i].name);
                 var name = $("<p>");
                 var info = $("<p>");
                 var date = $("<p>");
@@ -56,30 +40,22 @@ $(document).ready(function() {
                 date.text(response._embedded.events[i].dates.start.localDate);
                 time.text(response._embedded.events[i].dates.start.localTime);
                 location.html(response._embedded.events[i]._embedded.venues[0].name + "<br>" + response._embedded.events[i]._embedded.venues[0].address.line1);
-                url.attr("href",response._embedded.events[i]._embedded.url);
+                url.attr("href", response._embedded.events[i]._embedded.url);
                 url.text("Buy Tickets Here");
-                console.log(url);
 
-                // price.html ("minimum price:$" + response._embedded.events[i].priceRanges[0].min + "<br>" + "maximum price:$" + response._embedded.events[i].priceRanges[0].max);
-
-                if (response._embedded.events[i].priceRanges[0]) {
+                if (response._embedded.events[i].priceRanges) {
                     price.html("minimum price:$" + response._embedded.events[i].priceRanges[0].min + "<br>" + "maximum price:$" + response._embedded.events[i].priceRanges[0].max);
-                    console.log("test");
+
                 } else {
 
-                    price.remove();
+                    price.text("I Cant Find Here Checkout the Link for More Ticket Info");
                 }
-
-
-
-
-
             }
         })
     }
 
     function yelp() {
-        var userInput = $("#userInput").val().trim();
+        var userInput = $("#search").val().trim();
         var location = userInput.replace(/\s+/g, "+");
 
         var yelpUrl = "https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/businesses/search?location=" + location;
@@ -115,15 +91,13 @@ $(document).ready(function() {
     }
 
     function weather() {
-        var userInput = $("#userInput").val().trim();
+        var userInput = $("#search").val().trim();
         var location = userInput.replace(/\s+/g, "+");
-        console.log(location);
-
         var weatherUrl = "http://api.weatherapi.com/v1/current.json?key=98319b038859482288d193548190612&q=" + location;
         $.ajax({
             url: weatherUrl,
             method: "GET"
-        }).then(function (response) {
+        }).then(function(response) {
             console.log(response);
             var name = $("<p>");
             var currentTemp = $("<p>");
@@ -138,7 +112,6 @@ $(document).ready(function() {
             currentTemp.text("Current Tempture: " + response.current.temp_f + " F");
             feelsLike.text("Feel Like: " + response.current.feelslike_f + " F");
             weather.text("Current Weather: " + response.current.condition.text);
-
             weatherDiv.append(name, weather, currentTemp, feelsLike, windSpeed, humidity);
             $("#weather-box").append(weatherDiv);
         })
