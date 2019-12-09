@@ -7,7 +7,7 @@ $(document).ready(function() {
     function callThemAll() {
         event.preventDefault();
         $("#weather-box").empty();
-        $("#eat").empty();
+        $(".large").empty();
         ticketMaster();
         yelp();
         weather();
@@ -24,6 +24,14 @@ $(document).ready(function() {
             url: Ticketurl,
             method: "GET"
         }).then(function(response) {
+            console.log(response);
+            console.log(response._embedded.events[0]._embedded.venues[0].city.name);
+            var city = $("<span>");
+
+            city.text(response._embedded.events[0]._embedded.venues[0].city.name + " Events");
+            city.addClass("card-title");
+            $("#events").append(city);
+
             for (var i = 0; i < 5; i++) {
 
                 var name = $("<p>");
@@ -33,24 +41,29 @@ $(document).ready(function() {
                 var location = $("<p>");
                 var price = $("<p>");
                 var url = $("<a>");
-
+                var eventDiv = $("<div>");
 
                 name.text(response._embedded.events[i].name);
+                name.addClass("title");
                 info.text(response._embedded.events[i].info);
                 date.text(response._embedded.events[i].dates.start.localDate);
                 time.text(response._embedded.events[i].dates.start.localTime);
                 location.html(response._embedded.events[i]._embedded.venues[0].name + "<br>" + response._embedded.events[i]._embedded.venues[0].address.line1);
                 url.attr("href", response._embedded.events[i]._embedded.url);
                 url.text("Buy Tickets Here");
-
+                console.log(response._embedded.events[i].name);
                 if (response._embedded.events[i].priceRanges) {
                     price.html("minimum price:$" + response._embedded.events[i].priceRanges[0].min + "<br>" + "maximum price:$" + response._embedded.events[i].priceRanges[0].max);
 
                 } else {
 
-                    price.text("I Cant Find Here Checkout the Link for More Ticket Info");
+                    price.text("I Cant Find Prices Checkout the Link for More Ticket Info");
                 }
+                eventDiv.append(name, date, time, info, location, price, url);
+                eventDiv.addClass("card");
+                $("#events").append(eventDiv);
             }
+
         })
     }
 
@@ -67,23 +80,33 @@ $(document).ready(function() {
             method: 'GET',
             dataType: 'json',
             success: function(data) {
+
+                var city = $("<span>");
+                city.text(data.businesses[0].location.city + " Resturants");
+                city.addClass("card-title");
+                $("#food").append(city);
                 for (var i = 0; i < 5; i++) {
+
                     var yelpDiv = $("<div>");
                     var name = $("<p>");
                     var address = $("<p>");
                     var phone = $("<p>");
                     var rating = $("<p>");
                     var url = $("<a>");
+
                     var yelpDiv = $("<div>");
+
                     name.text(data.businesses[i].name);
+                    name.addClass("title");
                     address.text(data.businesses[i].location.display_address[0]);
                     phone.text(data.businesses[i].phone);
                     rating.text(data.businesses[i].rating);
                     url.attr("href", data.businesses[i].url);
                     url.text("Our Yelp Page");
                     yelpDiv.append(name, address, rating, phone, url);
+                    yelpDiv.addClass("card");
 
-                    $("#eat").append(yelpDiv);
+                    $("#food").append(yelpDiv);
 
                 }
             }
