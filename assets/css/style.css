@@ -1,51 +1,53 @@
- body {
-     font-family: 'Poppins', sans-serif;
-     color: black;
-     background-color: darkslategray;
-     justify-content: center;
+body {
+    font-family: 'Poppins', sans-serif;
+    color: black;
+    background-color: darkslategray;
+    justify-content: center;
+    
 
- }
+}
 
- .brand {
-     font-size: 52px;
-     margin: 10px;
-     padding: 5px;
- }
+.brand {
+    font-size: 52px;
+    margin: 10px;
+    padding: 5px;
+    text-align: center;
+}
 
- .tag {
-     font-size: 28px;
-     justify-content: end;
- }
+.tag {
+    font-size: 28px;
+    justify-content: end;
+}
 
- .nav-wrapper {
-     justify-content: center;
-     margin: 20px;
-     padding: 10px;
- }
+.nav-wrapper {
+    justify-content: center;
+    margin: 20px;
+    padding: 10px;
+}
 
- #search {
-    background-color: #fff; 
-    border: solid 2px #e1ad01; 
-    border-radius: 5px;
-     
- }
+#search {
+   background-color: #fff; 
+   border: solid 2px #e1ad01; 
+   border-radius: 5px;
+    
+}
 
- #search-button {
-    border-radius: 5px; 
- }
+#search-button {
+   border-radius: 5px; 
+}
 
- .card {
-     margin: 10px;
-     padding: 10px;
-     margin-bottom: 20px;
- }
+.card {
+    margin: 10px;
+    padding: 10px;
+    margin-bottom: 20px;
+}
 
- .card-title {
-     color: white;
-     padding: 10px;
- }
+.card-title {
+    color: white;
+    padding: 10px;
+}
 
- .input-field {
-     font-family: 'Poppins', sans-serif;
-     font-size: 20px;
- }
+.input-field {
+    font-family: 'Poppins', sans-serif;
+    font-size: 20px;
+}
