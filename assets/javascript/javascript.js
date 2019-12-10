@@ -17,7 +17,7 @@ $(document).ready(function() {
         }
         if ($("#eventCheck").is(":checked") && $("#foodCheck").is(":not(:checked)")) {
             ticketMaster();
-            console.log("test");
+
         }
         if ($("#foodCheck").is(":checked") && $("#eventCheck").is(":checked")) {
             yelp();
@@ -35,24 +35,20 @@ $(document).ready(function() {
     function ticketMaster() {
         var userInput = $("#search").val().trim();
         var location = userInput.replace(/\s+/g, "+");
-
         var Ticketurl = "https://app.ticketmaster.com/discovery/v2/events.json?city=" + location + "&radius=25&unit=miles&apikey=YwWmFsE5b1pkRuBdLaOHng4zYQMQjWuZ";
-
         $.ajax({
             url: Ticketurl,
             method: "GET"
         }).then(function(response) {
-            console.log(response);
-            console.log(response._embedded.events[0]._embedded.venues[0].city.name);
-            var city = $("<span>");
 
+            var city = $("<span>");
             city.text(response._embedded.events[0]._embedded.venues[0].city.name + " Events");
             city.addClass("card-title");
             $("#events").append(city);
 
             for (var i = 0; i < 5; i++) {
-                console.log(response);
-                console.log(response._embedded.events[i].url);
+
+                console.log(response._embedded.events[i].info);
                 var name = $("<p>");
                 var info = $("<p>");
                 var date = $("<p>");
@@ -65,13 +61,13 @@ $(document).ready(function() {
                 name.text(response._embedded.events[i].name);
                 name.addClass("title");
                 info.text(response._embedded.events[i].info);
-                date.text(response._embedded.events[i].dates.start.localDate);
-                time.text(response._embedded.events[i].dates.start.localTime);
+                date.text("Event Date: " + moment(response._embedded.events[i].dates.start.localDate).format("MMM Do YYYY"));
+                time.text("Start Time: " + moment(response._embedded.events[i].dates.start.localTime, "hh:mm").format("hh:mm a"));
                 location.html(response._embedded.events[i]._embedded.venues[0].name + "<br>" + response._embedded.events[i]._embedded.venues[0].address.line1);
                 url.attr("href", response._embedded.events[i].url);
                 url.attr("target", "_blank");
                 url.text("Buy Tickets Here");
-                console.log(response._embedded.events[i].name);
+
                 if (response._embedded.events[i].priceRanges) {
                     price.html("minimum price:$" + response._embedded.events[i].priceRanges[0].min + "<br>" + "maximum price:$" + response._embedded.events[i].priceRanges[0].max);
 
@@ -119,9 +115,8 @@ $(document).ready(function() {
                     name.text(data.businesses[i].name);
                     name.addClass("title");
                     address.text(data.businesses[i].location.display_address[0]);
-                    phone.text(data.businesses[i].phone);
-                    rating.text(data.businesses[i].rating);
-
+                    phone.text("Phone Number: " + data.businesses[i].phone);
+                    rating.text("Yelp Rating: " + data.businesses[i].rating + " Stars");
                     url.attr("href", data.businesses[i].url);
                     url.attr("target", "_blank");
                     url.text("Our Yelp Page");
