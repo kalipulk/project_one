@@ -51,7 +51,8 @@ $(document).ready(function() {
             $("#events").append(city);
 
             for (var i = 0; i < 5; i++) {
-
+                console.log(response);
+                console.log(response._embedded.events[i].url);
                 var name = $("<p>");
                 var info = $("<p>");
                 var date = $("<p>");
@@ -67,7 +68,8 @@ $(document).ready(function() {
                 date.text(response._embedded.events[i].dates.start.localDate);
                 time.text(response._embedded.events[i].dates.start.localTime);
                 location.html(response._embedded.events[i]._embedded.venues[0].name + "<br>" + response._embedded.events[i]._embedded.venues[0].address.line1);
-                url.attr("href", response._embedded.events[i]._embedded.url);
+                url.attr("href", response._embedded.events[i].url);
+                url.attr("target", "_blank");
                 url.text("Buy Tickets Here");
                 console.log(response._embedded.events[i].name);
                 if (response._embedded.events[i].priceRanges) {
@@ -119,7 +121,9 @@ $(document).ready(function() {
                     address.text(data.businesses[i].location.display_address[0]);
                     phone.text(data.businesses[i].phone);
                     rating.text(data.businesses[i].rating);
+
                     url.attr("href", data.businesses[i].url);
+                    url.attr("target", "_blank");
                     url.text("Our Yelp Page");
                     yelpDiv.append(name, address, rating, phone, url);
                     yelpDiv.addClass("card");
