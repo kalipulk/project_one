@@ -8,9 +8,27 @@ $(document).ready(function() {
         event.preventDefault();
         $("#weather-box").empty();
         $(".large").empty();
-        ticketMaster();
-        yelp();
         weather();
+
+
+        if ($("#foodCheck").is(":checked") && $("#eventCheck").is(":not(:checked)")) {
+            yelp();
+
+        }
+        if ($("#eventCheck").is(":checked") && $("#foodCheck").is(":not(:checked)")) {
+            ticketMaster();
+            console.log("test");
+        }
+        if ($("#foodCheck").is(":checked") && $("#eventCheck").is(":checked")) {
+            yelp();
+            ticketMaster();
+        }
+        if ($("#foodCheck").is(":not(:checked)") && $("#eventCheck").is(":not(:checked)")) {
+            var noChecks = $("<p>");
+            noChecks.text("Ummm you gotta tell me what you want to look I am not a mind reader app for use the checkboxes provided");
+            noChecks.addClass("card-title");
+            $("#food").append(noChecks);
+        }
 
     }
 
