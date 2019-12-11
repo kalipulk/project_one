@@ -113,54 +113,133 @@
     font-weight: bold;
     font-size: 25px;
     font-family: 'Poppins', sans-serif;
-    color: black;
-    background-color: darkslategray;
-    justify-content: center;
-    
+    color: #7d1907;
+ }
 
-}
-
-.brand {
-    font-size: 52px;
-    margin: 10px;
-    padding: 5px;
-    text-align: center;
-}
-
-.tag {
-    font-size: 28px;
-    justify-content: end;
-}
-
-.nav-wrapper {
-    justify-content: center;
-    margin: 20px;
-    padding: 10px;
-}
-
-#search {
-   background-color: #fff; 
-   border: solid 2px #e1ad01; 
-   border-radius: 5px;
-    
-}
-
-#search-button {
-   border-radius: 5px; 
-}
-
-.card {
-    margin: 10px;
-    padding: 10px;
-    margin-bottom: 20px;
-}
-
-.card-title {
-    color: white;
-    padding: 10px;
-}
-
-.input-field {
+ .title-site {
+    font-weight: bold;
+    font-size: 45px;
     font-family: 'Poppins', sans-serif;
-    font-size: 20px;
+    color: #e1ad01;
+    text-align:center;
+ }
+ .card-address {
+    color: #616161;
+ }
+
+ .card-address a {
+    color: #616161 !important;
+ }
+
+ .card div a{
+     color: #212121;
+ }
+
+ .fa-star {
+    color: #e1ad01;
+ }
+
+ .fa-mobile-alt {
+    color: #7d1907;
+ }
+
+ .fa-yelp {
+    color: #d32323;
+ }
+
+ .fa-ticket-alt{
+    color:#7d1907;
+ }
+.fa-dollar-sign, .fa-long-arrow-alt-down, .fa-long-arrow-alt-up {
+    color:#e1ad01;
 }
+ .input-field {
+     font-size: 20px;
+     display: flex;
+     align-items: center;
+ }
+
+ #weather-box {
+     background-color: #e1ad01;
+     border-radius: 5px;
+     display: flex;
+     align-items: center;
+     margin: auto;
+     padding: 10px;
+     width: 40%;
+ }
+
+ input:not([type]), input[type=text]:not(.browser-default), input[type=password]:not(.browser-default), input[type=email]:not(.browser-default), input[type=url]:not(.browser-default), input[type=time]:not(.browser-default), input[type=date]:not(.browser-default), input[type=datetime]:not(.browser-default), input[type=datetime-local]:not(.browser-default), input[type=tel]:not(.browser-default), input[type=number]:not(.browser-default), input[type=search]:not(.browser-default), textarea.materialize-textarea {
+     margin: auto;
+     font-size: 20px;
+     color: #fff;
+ }
+
+ .input-field input[type=search]:focus:not(.browser-default) {
+     color: #fff;
+ }
+
+ .preference-menu {
+     display: none;
+     background: #fff;
+     position: absolute;
+     -webkit-box-shadow: 0px 2px 5px 0px rgba(66, 66, 66, 0.5);
+     -moz-box-shadow: 0px 2px 5px 0px rgba(66, 66, 66, 0.5);
+     box-shadow: 0px 2px 5px 0px rgba(66, 66, 66, 0.5);
+ }
+
+ .weather-more-box {
+     width: 100%;
+     position: absolute;
+     display: none;
+ }
+
+ .weather-menu {
+     float: right;
+     -webkit-box-shadow: 0px 2px 5px 0px rgba(66, 66, 66, 0.5);
+     -moz-box-shadow: 0px 2px 5px 0px rgba(66, 66, 66, 0.5);
+     box-shadow: 0px 2px 5px 0px rgba(66, 66, 66, 0.5);
+     color: #616161;
+     background: #fff;
+ }
+
+ .weather-menu-title {
+     color: #212121;
+ }
+
+ hr {
+     width: 91%;
+     border-bottom: none;
+     border-color: #212121;
+ }
+
+ .menus-more {
+     display: flex;
+ }
+
+ .pref-item {
+     padding: 10px 25px;
+ }
+
+ .label {
+    color: #212121 !important;
+ }
+
+ [type="checkbox"]:checked+span:not(.lever):before {
+     border-right: 2px solid #7d1907;
+     border-bottom: 2px solid #7d1907;
+ }
+
+ .content-flex {
+     display: flex;
+     width: 75%;
+     margin: auto;
+ }
+.content-pad{
+    padding-top:100px;
+}
+ 
+ /*
+ #26a69a
+#7d1907 
+*/
