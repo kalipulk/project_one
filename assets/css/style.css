@@ -91,7 +91,9 @@
      float: right;
  }
 
- .weather-flex>div {}
+ .weather-flex>div {
+
+ }
 
  .more-weather {
      padding: 0 15px;
@@ -238,6 +240,10 @@
 .content-pad{
     padding-top:100px;
 }
+
+/* #logo {
+    color: #7d1907;
+} */
  
  /*
  #26a69a
