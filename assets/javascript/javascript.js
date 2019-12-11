@@ -122,8 +122,8 @@ $(document).ready(function() {
                     phone.addClass("card-phone");
                     rating.html('<i class="fas fa-star"></i> ' + data.businesses[i].rating + " Stars");
                     rating.addClass("card-rating");
-                    url.html('<a href="' + data.businesses[i].url + '"><i class="fab fa-yelp"></i> Yelp Page</a>');
-                    url.attr("target", "_blank");
+                    url.html('<a href="' + data.businesses[i].url + ' "target="_blank" ><i class="fab fa-yelp"></i> Yelp Page</a>');
+                    // url.attr("target", "_blank");
                     url.addClass("card-yelp");
                     yelpDiv.append(name, address, rating, phone, url);
                     yelpDiv.addClass("card");
