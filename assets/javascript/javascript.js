@@ -97,11 +97,11 @@ $(document).ready(function() {
             dataType: 'json',
             success: function(data) {
 
-                var city = $("<span>");
-                city.text(data.businesses[0].location.city + " Resturants");
-                city.addClass("card-title");
-                $("#food").append(city);
-                for (var i = 0; i < 5; i++) {
+                var city = $("<div>");
+                city.html('<div class="title-section">' + data.businesses[0].location.city + " Restaurants</div>");
+                city.addClass("card");
+                $("#r-title").append(city);
+                for (var i = 0; i < 8; i++) {
 
                     var yelpDiv = $("<div>");
                     var name = $("<p>");
@@ -139,12 +139,12 @@ $(document).ready(function() {
             method: "GET"
         }).then(function(response) {
             console.log(response);
-            var name = $("<p>");
-            var currentTemp = $("<p>");
-            var weather = $("<p>");
-            var feelsLike = $("<p>");
-            var windSpeed = $("<p>");
-            var humidity = $("<p>");
+            var name = $("<div>");
+            var currentTemp = $("<div>");
+            var weather = $("<div>");
+            var feelsLike = $('<div class="weather-menu-title">');
+            var windSpeed = $('<div class="weather-menu-title">');
+            var humidity = $('<div class="weather-menu-title">');
             var weatherDiv = $("<div>");
             humidity.text("Humidity: " + response.current.humidity + "%");
             windSpeed.text("Wind Speed: " + response.current.gust_mph + " mph");
@@ -154,7 +154,46 @@ $(document).ready(function() {
             weather.text("Current Weather: " + response.current.condition.text);
             weatherDiv.append(name, weather, currentTemp, feelsLike, windSpeed, humidity);
             $("#weather-box").append(weatherDiv);
+            $("#weather-city").html(name);
+            $("#weather-icon").html(weather);
+            $("#weather-temp").html(currentTemp);
+            $("#feels-like").html(feelsLike);
+            $("#wind-speed").html(windSpeed);
+            $("#humididness").html(humidity);
+            $("#more-weather").html('<div id="thermo" class="fa thermo fa-lg"><i class="fas fa-thermometer-full"></i></div><i class="fas fa-ellipsis-v fa-lg"></i>')
+            
         })
     }
 
+    $("#open-menu").click(function() {
+        $("#pref-selection").slideToggle(1000);     
+    });
+
+    $("#more-weather").click(function() {
+        $("#more-weathers").slideToggle(1000);     
+    });
+
+    $(".rotate").click(function(){
+        $(this).toggleClass("down")  ; 
+       });
+    $("#more-weather").click(function(){
+            clearInterval();
+            var a;
+            a = document.getElementById("thermo");
+            a.innerHTML = "&#xf2cb;";
+            setTimeout(function () {
+                a.innerHTML = "&#xf2ca;";
+              }, 1000);
+            setTimeout(function () {
+                a.innerHTML = "&#xf2c9;";
+              }, 2000);
+            setTimeout(function () {
+                a.innerHTML = "&#xf2c8;";
+              }, 3000);
+            setTimeout(function () {
+                a.innerHTML = "&#xf2c7;";
+              }, 4000);
+          thermo();
+          setInterval(thermo, 5000);
+    });
 })

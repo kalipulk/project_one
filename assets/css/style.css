@@ -1,4 +1,117 @@
-body {
+ body {
+     font-family: 'Raleway', sans-serif;
+     background-color: #e0e0e0;
+ }
+
+.navigation-sticky{
+    position:fixed;
+    z-index:10;
+    width:100%;
+}
+
+ .nav-flex {
+     display: flex;
+     width: 100%;
+     background: darkslategray;
+     align-items: center;
+ }
+
+ .thermo, .fa-ellipsis-v {
+     color: #fff;
+ }
+
+ .fa-hamburger {
+     color: #fff;
+     padding: 0 15px;
+     display: inline-block;
+ }
+
+ .rotate{
+    -moz-transition: all 0.9s linear;
+    -webkit-transition: all 0.9s linear;
+    transition: all 0.9s linear;
+}
+
+.rotate.down{
+    -moz-transform:rotate(180deg);
+    -webkit-transform:rotate(180deg);
+    transform:rotate(180deg);
+}
+
+ /* .nav-wrapper {
+     justify-content: center;
+     margin: 20px;
+     padding: 10px;
+ } */
+
+ #search {
+     background-color: darkslategray;
+     line-height: 2;
+     padding:0 8px;
+ }
+
+ #search-button {
+     cursor: pointer;
+     background: none;
+     border: none;
+ }
+
+ .search-bar {
+     width: 100%;
+ }
+
+ #search-button:hover {
+     cursor: pointer;
+ }
+
+ .fa-search {
+     color: #fff;
+ }
+
+ .city {
+     color: #fff;
+ }
+
+ .temp {
+     color: #fff;
+ }
+
+ .card {
+     margin: 10px;
+     padding: 15px 20px;
+     margin-bottom: 20px;
+ }
+
+ .weather-flex {
+     display: flex;
+     align-items: center;
+     font-size: 24px;
+     font-family: 'Poppins', sans-serif;
+     font-weight: bolder;
+     float: right;
+ }
+
+ .weather-flex>div {}
+
+ .more-weather {
+     padding: 0 15px;
+ }
+
+ .card-title {
+     color: white;
+     padding: 10px;
+ }
+
+ .title {
+    font-weight: bold;
+    font-size: 20px;
+    font-family: 'Poppins', sans-serif;
+    color: darkslategray;
+ }
+
+ .title-section {
+    font-weight: bold;
+    font-size: 25px;
     font-family: 'Poppins', sans-serif;
     color: black;
     background-color: darkslategray;

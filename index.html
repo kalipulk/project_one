@@ -25,12 +25,37 @@
         <div class="tag">find the best of what's around</div>
     </div>
 
-    <!-- search input field -->
-    <div class="nav-wrapper">
-        <form id="userForm">
-            <div class="input-field">
-                <input id="search" type="search" placeholder="town/city" required>
-                <label class="label-icon" for="search"><i class="material-icons"></i></label>
+    <div class="navigation-sticky">
+
+        <!--nav-->
+        <div class="nav-flex">
+            <!--hamburgler-->
+            <div>
+                <div id="open-menu"><i class="fas fa-hamburger fa-2x rotate"></i></div>
+                <div id="close-menu" style="display:none;">X</div>
+            </div>
+
+            <!--search bar-->
+            <div style="width:65%;">
+                <div>
+                    <form id="userForm">
+                        <div class="input-field">
+                            <div><button id="search-button"><i class="fas fa-search"></i></button></div>
+                            <div class="search-bar"><input id="search" type="search" placeholder="location" required>
+                            </div>
+                            <!--div><label class="label-icon" for="search"><i class="material-icons"></i></label></div-->
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <!-- weather content -->
+            <div style="width:35%">
+                <div class="weather-flex">
+                    <div id="weather-city" class="city"></div>
+                    <div id="weather-icon" class="icon"></div>
+                    <div id="weather-temp" class="temp"></div>
+                    <div id="more-weather" class="more-weather fa"></div>
+                </div>
             </div>
             <div>
                 <form action="#">
