@@ -25,7 +25,7 @@ $(document).ready(function() {
         }
         if ($("#foodCheck").is(":not(:checked)") && $("#eventCheck").is(":not(:checked)")) {
             var noChecks = $("<p>");
-            noChecks.text("Ummm you gotta tell me what you want to look I am not a mind reader app for use the checkboxes provided");
+            noChecks.text("Ummm you gotta tell me what you want to look for. I am not a mind readeing app. Please use the checkboxes provided.");
             noChecks.addClass("card-title");
             $("#food").append(noChecks);
         }
@@ -41,39 +41,41 @@ $(document).ready(function() {
             method: "GET"
         }).then(function(response) {
 
-            var city = $("<span>");
-            city.text(response._embedded.events[0]._embedded.venues[0].city.name + " Events");
-            city.addClass("card-title");
-            $("#events").append(city);
+            var city = $("<div>");
+            city.html('<div class="title-section">' + response._embedded.events[0]._embedded.venues[0].city.name + ' Events</div>');
+            city.addClass("card");
+            $("#e-title").append(city);
 
             for (var i = 0; i < 5; i++) {
 
                 console.log(response._embedded.events[i].info);
-                var name = $("<p>");
-                var info = $("<p>");
-                var date = $("<p>");
-                var time = $("<p>");
-                var location = $("<p>");
-                var price = $("<p>");
-                var url = $("<a>");
+                var name = $("<div>");
+                var info = $('<div class="card-address">');
+                var date = $("<div>");
+                var time = $("<div>");
+                var location = $("<div>");
+                var price = $("<div>");
+                var url = $("<div>");
                 var eventDiv = $("<div>");
 
                 name.text(response._embedded.events[i].name);
                 name.addClass("title");
                 info.text(response._embedded.events[i].info);
-                date.text("Event Date: " + moment(response._embedded.events[i].dates.start.localDate).format("MMM Do YYYY"));
-                time.text("Start Time: " + moment(response._embedded.events[i].dates.start.localTime, "hh:mm").format("hh:mm a"));
-                location.html(response._embedded.events[i]._embedded.venues[0].name + "<br>" + response._embedded.events[i]._embedded.venues[0].address.line1);
-                url.attr("href", response._embedded.events[i].url);
+                date.html('<i class="far fa-calendar-alt"></i> Event Date: ' + moment(response._embedded.events[i].dates.start.localDate).format("MMM Do YYYY"));
+                date.addClass("card-cal")
+                time.html('<i class="far fa-clock"></i> Start Time: ' + moment(response._embedded.events[i].dates.start.localTime, "hh:mm").format("hh:mm a"));
+                location.html(response._embedded.events[i]._embedded.venues[0].name + "<br>" + '<a href="https://www.google.com/maps/place/' + response._embedded.events[i]._embedded.venues[0].address.line1 + '">' + response._embedded.events[i]._embedded.venues[0].address.line1 + ' <i class="fas fa-directions"></i></a>');
+                location.addClass("card-address");
+                url.html('<a href="' + response._embedded.events[i].url + '"><i class="fas fa-ticket-alt"></i> Get Tickets</a>');
                 url.attr("target", "_blank");
-                url.text("Buy Tickets Here");
+                //url.text("Buy Tickets Here");
 
                 if (response._embedded.events[i].priceRanges) {
-                    price.html("minimum price:$" + response._embedded.events[i].priceRanges[0].min + "<br>" + "maximum price:$" + response._embedded.events[i].priceRanges[0].max);
+                    price.html('<i class="fas fa-long-arrow-alt-down"></i><i class="fas fa-dollar-sign"></i> Min: $' + response._embedded.events[i].priceRanges[0].min + "<br>" + '<i class="fas fa-long-arrow-alt-up"></i><i class="fas fa-dollar-sign"></i> Max: $' + response._embedded.events[i].priceRanges[0].max);
 
                 } else {
 
-                    price.text("I Cant Find Prices Checkout the Link for More Ticket Info");
+                    price.text("I Can't Find Prices. Checkout the Link for More Ticket Info");
                 }
                 eventDiv.append(name, date, time, info, location, price, url);
                 eventDiv.addClass("card");
@@ -97,29 +99,32 @@ $(document).ready(function() {
             dataType: 'json',
             success: function(data) {
 
-                var city = $("<span>");
-                city.text(data.businesses[0].location.city + " Resturants");
-                city.addClass("card-title");
-                $("#food").append(city);
-                for (var i = 0; i < 5; i++) {
+                var city = $("<div>");
+                city.html('<div class="title-section">' + data.businesses[0].location.city + " Restaurants</div>");
+                city.addClass("card");
+                $("#r-title").append(city);
+                for (var i = 0; i < 8; i++) {
 
                     var yelpDiv = $("<div>");
-                    var name = $("<p>");
-                    var address = $("<p>");
-                    var phone = $("<p>");
-                    var rating = $("<p>");
-                    var url = $("<a>");
+                    var name = $("<div>");
+                    var address = $("<div>");
+                    var phone = $("<div>");
+                    var rating = $("<div>");
+                    var url = $("<div>");
 
                     var yelpDiv = $("<div>");
 
                     name.text(data.businesses[i].name);
                     name.addClass("title");
-                    address.text(data.businesses[i].location.display_address[0]);
-                    phone.text("Phone Number: " + data.businesses[i].phone);
-                    rating.text("Yelp Rating: " + data.businesses[i].rating + " Stars");
-                    url.attr("href", data.businesses[i].url);
+                    address.html('<a href="https://www.google.com/maps/place/' + data.businesses[i].location.display_address[0] + '" target="_blank">' + data.businesses[i].location.display_address[0] + ' <i class="fas fa-directions"></i></a>');
+                    address.addClass("card-address");
+                    phone.html('<a href="tel:' + data.businesses[i].phone + '"><i class="fas fa-mobile-alt"></i> ' + data.businesses[i].phone + '</a>');
+                    phone.addClass("card-phone");
+                    rating.html('<i class="fas fa-star"></i> ' + data.businesses[i].rating + " Stars");
+                    rating.addClass("card-rating");
+                    url.html('<a href="' + data.businesses[i].url + '"><i class="fab fa-yelp"></i> Yelp Page</a>');
                     url.attr("target", "_blank");
-                    url.text("Our Yelp Page");
+                    url.addClass("card-yelp");
                     yelpDiv.append(name, address, rating, phone, url);
                     yelpDiv.addClass("card");
 
@@ -139,22 +144,61 @@ $(document).ready(function() {
             method: "GET"
         }).then(function(response) {
             console.log(response);
-            var name = $("<p>");
-            var currentTemp = $("<p>");
-            var weather = $("<p>");
-            var feelsLike = $("<p>");
-            var windSpeed = $("<p>");
-            var humidity = $("<p>");
+            var name = $("<div>");
+            var currentTemp = $("<div>");
+            var weather = $("<div>");
+            var feelsLike = $('<div class="weather-menu-title">');
+            var windSpeed = $('<div class="weather-menu-title">');
+            var humidity = $('<div class="weather-menu-title">');
             var weatherDiv = $("<div>");
             humidity.text("Humidity: " + response.current.humidity + "%");
             windSpeed.text("Wind Speed: " + response.current.gust_mph + " mph");
             name.text(response.location.name);
-            currentTemp.text("Current Tempture: " + response.current.temp_f + " F");
-            feelsLike.text("Feel Like: " + response.current.feelslike_f + " F");
-            weather.text("Current Weather: " + response.current.condition.text);
+            currentTemp.text(response.current.temp_f + 'º F');
+            feelsLike.text('Feels Like: ' + response.current.feelslike_f + 'º F');
+            weather.html('<img src="https:'+ response.current.condition.icon + '">');
             weatherDiv.append(name, weather, currentTemp, feelsLike, windSpeed, humidity);
             $("#weather-box").append(weatherDiv);
+            $("#weather-city").html(name);
+            $("#weather-icon").html(weather);
+            $("#weather-temp").html(currentTemp);
+            $("#feels-like").html(feelsLike);
+            $("#wind-speed").html(windSpeed);
+            $("#humididness").html(humidity);
+            $("#more-weather").html('<div id="thermo" class="fa thermo fa-lg"><i class="fas fa-thermometer-full"></i></div><i class="fas fa-ellipsis-v fa-lg"></i>')
+            
         })
     }
 
+    $("#open-menu").click(function() {
+        $("#pref-selection").slideToggle(1000);     
+    });
+
+    $("#more-weather").click(function() {
+        $("#more-weathers").slideToggle(1000);     
+    });
+
+    $(".rotate").click(function(){
+        $(this).toggleClass("down")  ; 
+       });
+    $("#more-weather").click(function(){
+            clearInterval();
+            var a;
+            a = document.getElementById("thermo");
+            a.innerHTML = "&#xf2cb;";
+            setTimeout(function () {
+                a.innerHTML = "&#xf2ca;";
+              }, 1000);
+            setTimeout(function () {
+                a.innerHTML = "&#xf2c9;";
+              }, 2000);
+            setTimeout(function () {
+                a.innerHTML = "&#xf2c8;";
+              }, 3000);
+            setTimeout(function () {
+                a.innerHTML = "&#xf2c7;";
+              }, 4000);
+          thermo();
+          setInterval(thermo, 5000);
+    });
 })
