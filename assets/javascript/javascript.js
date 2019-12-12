@@ -138,7 +138,7 @@ $(document).ready(function() {
     function weather() {
         var userInput = $("#search").val().trim();
         var location = userInput.replace(/\s+/g, "+");
-        var weatherUrl = "http://api.weatherapi.com/v1/current.json?key=98319b038859482288d193548190612&q=" + location;
+        var weatherUrl = "https://api.weatherapi.com/v1/current.json?key=98319b038859482288d193548190612&q=" + location;
         $.ajax({
             url: weatherUrl,
             method: "GET"
