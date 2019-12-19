@@ -27,7 +27,8 @@ $(document).ready(function() {
             var noChecks = $("<p>");
             noChecks.text("Ummm you gotta tell me what you want to look for. I am not a mind reading app. Please use the checkboxes provided.");
             noChecks.addClass("card");
-            $("#big").attr("style", "width:100%");
+            $("#big").attr("style", "width:81%");
+            $("#small").attr("style", "width:0%");
             $("#e-title").append(noChecks);
         }
 
