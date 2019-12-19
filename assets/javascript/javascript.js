@@ -25,9 +25,10 @@ $(document).ready(function() {
         }
         if ($("#foodCheck").is(":not(:checked)") && $("#eventCheck").is(":not(:checked)")) {
             var noChecks = $("<p>");
-            noChecks.text("Ummm you gotta tell me what you want to look for. I am not a mind readeing app. Please use the checkboxes provided.");
-            noChecks.addClass("card-title");
-            $("#food").append(noChecks);
+            noChecks.text("Ummm you gotta tell me what you want to look for. I am not a mind reading app. Please use the checkboxes provided.");
+            noChecks.addClass("card");
+            $("#big").attr("style", "width:100%");
+            $("#e-title").append(noChecks);
         }
 
     }
@@ -79,7 +80,17 @@ $(document).ready(function() {
                 }
                 eventDiv.append(name, date, time, info, location, price, url);
                 eventDiv.addClass("card");
-                $("#events").append(eventDiv);
+                if ($("#eventCheck").is(":checked") && $("#foodCheck").is(":not(:checked)")) {
+                    $("#events").append(eventDiv);
+                    $("#big").attr("style", "width:100%");
+                    $("#small").attr("style", "width:0%");
+                }
+                if ($("#foodCheck").is(":checked") && $("#eventCheck").is(":checked")) {
+                    $("#events").append(eventDiv);
+                    $("#big").attr("style", "width:70%");
+                    $("#small").attr("style", "width:30%");
+                }
+
             }
 
         })
@@ -102,7 +113,12 @@ $(document).ready(function() {
                 var city = $("<div>");
                 city.html('<div class="title-section">' + data.businesses[0].location.city + " Restaurants</div>");
                 city.addClass("card");
-                $("#r-title").append(city);
+                if ($("#foodCheck").is(":checked") && $("#eventCheck").is(":not(:checked)")) {
+                    $("#e-title").append(city);
+                } else {
+                    $("#r-title").append(city);
+                }
+
                 for (var i = 0; i < 8; i++) {
 
                     var yelpDiv = $("<div>");
@@ -127,8 +143,17 @@ $(document).ready(function() {
                     url.addClass("card-yelp");
                     yelpDiv.append(name, address, rating, phone, url);
                     yelpDiv.addClass("card");
+                    if ($("#foodCheck").is(":checked") && $("#eventCheck").is(":not(:checked)")) {
+                        $("#events").append(yelpDiv);
+                        $("#big").attr("style", "width:100%");
+                        $("#small").attr("style", "width:0%");
+                    }
+                    if ($("#foodCheck").is(":checked") && $("#eventCheck").is(":checked")) {
+                        $("#big").attr("style", "width:70%");
+                        $("#small").attr("style", "width:30%");
+                        $("#food").append(yelpDiv);
+                    }
 
-                    $("#food").append(yelpDiv);
 
                 }
             }
@@ -156,7 +181,7 @@ $(document).ready(function() {
             name.text(response.location.name);
             currentTemp.text(response.current.temp_f + 'º F');
             feelsLike.text('Feels Like: ' + response.current.feelslike_f + 'º F');
-            weather.html('<img src="https:'+ response.current.condition.icon + '">');
+            weather.html('<img src="https:' + response.current.condition.icon + '">');
             weatherDiv.append(name, weather, currentTemp, feelsLike, windSpeed, humidity);
             $("#weather-box").append(weatherDiv);
             $("#weather-city").html(name);
@@ -166,39 +191,39 @@ $(document).ready(function() {
             $("#wind-speed").html(windSpeed);
             $("#humididness").html(humidity);
             $("#more-weather").html('<div id="thermo" class="fa thermo fa-lg"><i class="fas fa-thermometer-full"></i></div><i class="fas fa-ellipsis-v fa-lg"></i>')
-            
+
         })
     }
 
     $("#open-menu").click(function() {
-        $("#pref-selection").slideToggle(1000);     
+        $("#pref-selection").slideToggle(1000);
     });
 
     $("#more-weather").click(function() {
-        $("#more-weathers").slideToggle(1000);     
+        $("#more-weathers").slideToggle(1000);
     });
 
-    $(".rotate").click(function(){
-        $(this).toggleClass("down")  ; 
-       });
-    $("#more-weather").click(function(){
-            clearInterval();
-            var a;
-            a = document.getElementById("thermo");
-            a.innerHTML = "&#xf2cb;";
-            setTimeout(function () {
-                a.innerHTML = "&#xf2ca;";
-              }, 1000);
-            setTimeout(function () {
-                a.innerHTML = "&#xf2c9;";
-              }, 2000);
-            setTimeout(function () {
-                a.innerHTML = "&#xf2c8;";
-              }, 3000);
-            setTimeout(function () {
-                a.innerHTML = "&#xf2c7;";
-              }, 4000);
-          thermo();
-          setInterval(thermo, 5000);
+    $(".rotate").click(function() {
+        $(this).toggleClass("down");
+    });
+    $("#more-weather").click(function() {
+        clearInterval();
+        var a;
+        a = document.getElementById("thermo");
+        a.innerHTML = "&#xf2cb;";
+        setTimeout(function() {
+            a.innerHTML = "&#xf2ca;";
+        }, 1000);
+        setTimeout(function() {
+            a.innerHTML = "&#xf2c9;";
+        }, 2000);
+        setTimeout(function() {
+            a.innerHTML = "&#xf2c8;";
+        }, 3000);
+        setTimeout(function() {
+            a.innerHTML = "&#xf2c7;";
+        }, 4000);
+        thermo();
+        setInterval(thermo, 5000);
     });
 })
