@@ -1,12 +1,3 @@
-<li class="nav-item active">
-<a class="nav-link" href="index.html">About </a>
-</li>
-<li class="nav-item active">
-<a class="nav-link" href="contact.html">Contact</a>
-</li>
-<li class="nav-item active">
-<a class="nav-link" href="#" target="_blank">LinkIn</a>
-</li>
-<li class="nav-item active">
-<a class="nav-link " href="https://github.com/cmatchneer" target="_blank">Github</a>
-</li>
+This application is designed to give users the ability to look at everything they need for a night out in one location. When a user lands on the page, they will see a search bar to enter their desired search location. Once a location is entered, results for local resturants, events and weather will populate. Users are then given the option to search Yelp pages, buy tickets, or get directions to locations their interested in. 
+
+Technologies Used: JavaScript, aJax, TicketMaster API, Weather API, Yelp API, CSS, 
